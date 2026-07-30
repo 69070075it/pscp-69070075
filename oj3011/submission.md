@@ -146,26 +146,26 @@ Step 5: เเสดงค่าสีที่ผสมได้
 ทำไมเลือก case นี้:
 
 ```text
-ตามใน i judge เพื่อลองตรวจ
+ลองใช้สีเดียวกัน
 ```
 
 Input:
 
 ```text
 Red
-Yellow
+Red
 ```
 
 Expected output:
 
 ```text
-Orange
+Red
 ```
 
 Actual output:
 
 ```text
-Orange
+Red
 ```
 
 Result:
@@ -212,26 +212,26 @@ Pass
 ทำไมเลือก case นี้:
 
 ```text
-ตาม i judge เพื่อลองตรวจ
+ลองใช้สีใน list
 ```
 
 Input:
 
 ```text
-Yellow
+Red
 Blue
 ```
 
 Expected output:
 
 ```text
-Green
+Violet
 ```
 
 Actual output:
 
 ```text
-Green
+Violet
 ```
 
 Result:
