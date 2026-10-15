@@ -1,41 +1,31 @@
-'''CuteCat CuteFox'''
+""" CuteCat CuteFox """
+
+import ast
+
+
 def main():
-    '''CuteCat CuteFox'''
+    """CuteCat CuteFox"""
     n = int(input())
-    cats = {}
-    foxes = {}
-
+    pets = {}
     for _ in range(n):
-        line = input()
-        if not line or ":" not in line:
-            continue
-
-        key, value = line.split(":", 1)
-        name = key.strip(" '\"{}")
-        code = value.strip(" '\"{}")
-
-        # เก็บข้อมูลโดยใช้ (เลขรหัสแบบ int, รหัสเดิม) เป็น Key ใน Dict
-        if "Cat" in code:
-            num = int(code.replace("Cat", ""))
-            cats[(num, code)] = name
-        elif "Fox" in code:
-            num = int(code.replace("Fox", ""))
-            foxes[(num, code)] = name
-
-    # ตรวจสอบ Default (เช็คจากค่า code ในคีย์ของ Dict)
-    if not any(code == "Cat01" for _, code in cats):
-        cats[(1, "Cat01")] = "Garfield"
-    if not any(code == "Fox01" for _, code in foxes):
-        foxes[(1, "Fox01")] = "Fubuki"
-
+        d = ast.literal_eval(input())
+        for k in d:
+            pets[k] = d[k]
+    codes = set(pets.values())
+    if "Cat01" not in codes and "Garfield" not in pets:
+        pets["Garfield"] = "Cat01"
+    if "Fox01" not in codes and "Fubuki" not in pets:
+        pets["Fubuki"] = "Fox01"
+    cats = [(v, k) for k, v in pets.items() if v.startswith("Cat")]
+    foxes = [(v, k) for k, v in pets.items() if v.startswith("Fox")]
+    cats.sort(key=lambda t: int(t[0][3:]))
+    foxes.sort(key=lambda t: int(t[0][3:]))
     print(f"Cat : {len(cats)}")
     print(f"Fox : {len(foxes)}")
+    for v, k in cats:
+        print(f"{k} : {v}")
+    for v, k in foxes:
+        print(f"{k} : {v}")
 
-    # Python จะเรียง Tuple (num, code) ตาม num ก่อนโดยอัตโนมัติ ไม่ต้องใช้ key
-    for num, code in sorted(cats):
-        print(f"{cats[(num, code)]} : {code}")
-
-    for num, code in sorted(foxes):
-        print(f"{foxes[(num, code)]} : {code}")
 
 main()
